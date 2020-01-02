@@ -25,11 +25,11 @@ const Layout = ({ children, headerTitle }) => {
 
   return (
     <>
-      <Header title={window.location.pathname || data.site.siteMetadata.title } />
+      <Header title={headerTitle} />
       <div
         style={{
           margin: `0 auto`,
-          maxWidth: 960,
+          maxWidth: 1170,
           padding: `0px 1.0875rem 1.45rem`,
           paddingTop: 0,
         }}
@@ -46,6 +46,7 @@ const Layout = ({ children, headerTitle }) => {
 }
 
 Layout.propTypes = {
+  headerTitle: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
 }
 

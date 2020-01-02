@@ -1,33 +1,40 @@
+import React from "react"
 import { Link } from "gatsby"
 import PropTypes from "prop-types"
-import React from "react"
+import styled, { createGlobalStyle } from 'styled-components'
+
+import menu from '../images/menu.svg'
+
+const StyledDiv = styled.div`
+  margin: 0 auto;
+  max-width: 1170px;
+  padding: 1.45rem 1.0875rem;
+  display: flex;
+  justify-content: space-between;
+`
+
+const StyledH1 = styled.h1`
+  text-decoration: none;
+  text-transform: italic;
+`
+
+const StyledImg = styled.img`
+  cursor: pointer;
+`
 
 const Header = ({ title }) => (
   <header
     style={{
-      background: `rebeccapurple`,
+      // background: `rebeccapurple`,a
       marginBottom: `1.45rem`,
     }}
   >
-    <div
-      style={{
-        margin: `0 auto`,
-        maxWidth: 960,
-        padding: `1.45rem 1.0875rem`,
-      }}
-    >
-      <h1 style={{ margin: 0 }}>
-        <Link
-          to="/"
-          style={{
-            color: `white`,
-            textDecoration: `none`,
-          }}
-        >
+    <StyledDiv>
+      <StyledH1>
           {title}
-        </Link>
-      </h1>
-    </div>
+      </StyledH1>
+      <StyledImg src={menu} onClick={() => alert('clicked')} />
+    </StyledDiv>
   </header>
 )
 
