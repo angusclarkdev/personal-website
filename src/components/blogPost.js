@@ -5,7 +5,8 @@ const StyledDiv = styled.div`
   text-align: center;
   flex-basis: 70%;
   background-color: #fff;
-  padding: 1rem;
+  padding: 1em;
+  margin-right: 1em;
 `
 
 const BlogPost = () => (

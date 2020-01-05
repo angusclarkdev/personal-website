@@ -8,13 +8,29 @@ const categories = [
   { catergory: 'Mental Health', count: 10 }
 ]
 
+const latest = [
+  {
+    id: 1,
+    title: '10 things wrong with tech in 2019'
+  },
+  {
+    id: 2,
+    title: 'Spice up your life with these tricks'
+  }
+]
+
 const StyledUl = styled.ul`
   list-style: none;
   margin: 0;
 `
 
-const StyledDiv = styled.div`
+const StyledSection = styled.section`
+  flex-basis: 30%;
   padding: 1em;
+
+  div {
+    padding: 0 2em;
+  }
 `
 
 const StyledH3 = styled.h3`
@@ -22,16 +38,25 @@ const StyledH3 = styled.h3`
 `
 
 const SideBar = () => (
-  <StyledDiv>
+  <StyledSection>
+    <div>
     <StyledH3> Categories </StyledH3>
     <StyledUl>
       {categories.map(i => (
         <li>
-        <SideBarItem itemData={i} />
+        <SideBarItem categories={i} />
         </li>
     ))}
     </StyledUl>
-  </StyledDiv>
+    </div>
+    <div>
+        {/* {latest.map(i => (
+          <li>
+          <SideBarItem latestPosts={i} />
+        </li>
+        ))} */}
+    </div>
+  </StyledSection>
 )
 
 export default SideBar
