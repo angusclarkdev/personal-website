@@ -52,7 +52,7 @@ const SideBar = () => (
     <div>
         {/* {latest.map(i => (
           <li>
-          <SideBarItem latestPosts={i} />
+          <
         </li>
         ))} */}
     </div>

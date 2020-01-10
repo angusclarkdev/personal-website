@@ -8,7 +8,7 @@ import menu from '../images/menu.svg'
 const StyledDiv = styled.div`
   margin: 0 auto;
   max-width: 1170px;
-  padding: 1.45rem 1.0875rem;
+  padding: 1.45rem 0;
   display: flex;
   justify-content: space-between;
 `

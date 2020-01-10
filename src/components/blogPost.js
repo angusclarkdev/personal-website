@@ -3,10 +3,10 @@ import styled from 'styled-components'
 
 const StyledDiv = styled.div`
   text-align: center;
-  flex-basis: 70%;
   background-color: #fff;
   padding: 1em;
-  margin-right: 1em;
+  margin-bottom: 2em;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 `
 
 const BlogPost = () => (

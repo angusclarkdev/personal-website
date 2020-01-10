@@ -3,9 +3,10 @@ import { Link } from "gatsby"
 import styled, { createGlobalStyle } from 'styled-components'
 
 import BlogTitle from '../components/blogTitle'
-import BlogPost from '../components/BlogPost'
+import Posts from '../components/posts'
 import Image from "../components/image"
 import Layout from "../components/layout"
+import Menu from '../components/menu'
 import SideBar from '../components/sideBar'
 import SEO from "../components/seo"
 
@@ -24,8 +25,9 @@ const IndexPage = () => (
     <SEO title="Home" />
     <BlogTitle />
     <MainContent>
-      <BlogPost />
+      <Posts />
       <SideBar />
+      <Menu />
     </MainContent>
   </Layout>
 )
