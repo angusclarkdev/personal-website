@@ -1,7 +1,7 @@
 import React from "react"
 import { Link } from "gatsby"
 import PropTypes from "prop-types"
-import styled, { createGlobalStyle } from 'styled-components'
+import styled from 'styled-components'
 
 import menu from '../images/menu.svg'
 
@@ -20,12 +20,12 @@ const StyledH1 = styled.h1`
 
 const StyledImg = styled.img`
   cursor: pointer;
+  z-index: 1;
 `
 
-const Header = ({ title }) => (
+const Header = ({ title, showSideNavigation }) => (
   <header
     style={{
-      // background: `rebeccapurple`,a
       marginBottom: `1.45rem`,
     }}
   >
@@ -33,7 +33,7 @@ const Header = ({ title }) => (
       <StyledH1>
           {title}
       </StyledH1>
-      <StyledImg src={menu} onClick={() => alert('clicked')} />
+      <StyledImg src={menu} onClick={showSideNavigation} />
     </StyledDiv>
   </header>
 )

@@ -6,9 +6,10 @@ import BlogTitle from '../components/blogTitle'
 import Posts from '../components/posts'
 import Image from "../components/image"
 import Layout from "../components/layout"
-import Menu from '../components/menu'
+import SideNavigation from '../components/sideNavigation'
 import SideBar from '../components/sideBar'
 import SEO from "../components/seo"
+
 
 const GlobalStyles = createGlobalStyle`
   body {
@@ -27,7 +28,6 @@ const IndexPage = () => (
     <MainContent>
       <Posts />
       <SideBar />
-      <Menu />
     </MainContent>
   </Layout>
 )
