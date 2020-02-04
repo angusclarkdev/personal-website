@@ -8,10 +8,11 @@ const StyledDiv = styled.div`
   background-color: #F5F5F5;
   height: 100%;
   position: fixed;
-  right: ${props => props.isVisible ? 0 : '-311px'}; 
+  right: 0;
+  transform: ${props => props.isVisible ? 0 : 'translateX(311px)'}; 
   padding: 1.45rem 6rem;
   z-index: 2;
-  transition: right .4s ease-in-out;
+  transition: transform .4s ease-in-out;
 
   ul {
     margin: 0;
