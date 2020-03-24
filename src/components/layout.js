@@ -40,6 +40,7 @@ const Layout = ({ children, headerTitle }) => {
       <ThemeProvider theme={theme}> 
         {isSideNavigationVisible &&<OverLay />}
             <SideNavigation
+              handleBlur={() => toggleSideNavigationVisibility()}
               isVisible={isSideNavigationVisible}
               close={() => toggleSideNavigationVisibility()}
             />
