@@ -9,8 +9,9 @@ margin-right: 1em;
 
 const Posts = () => (
   <StyledSection>
-    <BlogPost />
-    <BlogPost />
+    <BlogPost category='general' />
+    <BlogPost category='tech' />
+    <BlogPost category='mental health' />
   </StyledSection>
 )
 

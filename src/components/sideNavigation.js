@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import styled from 'styled-components'
 
 import closeIcon from '../images/close.svg'
@@ -29,7 +29,7 @@ const StyledDiv = styled.div`
     cursor: pointer;
     
     &:hover {
-      color: #7CE0C4;
+      color: ${props => props.theme.colors.primaryHoverGreen}
     }
   }
 
@@ -44,16 +44,44 @@ const StyledDiv = styled.div`
     cursor: pointer;
   }
 `
-const SideNavigation  = ({ isVisible, close }) => {
-  return (
-  <StyledDiv isVisible={isVisible}>
-    <img src={closeIcon} onClick={close}/>
-    <nav>
-     <NavMainList />
-    </nav>
-  </StyledDiv>
-)
+const useClickOutsideHandler = (ref) => {
+  const [ isClickOutside, setClickOutside ] = useState(false)
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (ref.current && !ref.current.contains(event.target)) {
+        setClickOutside(true)
+        console.info('outside')
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [ref])
+  console.info('returning')
+  return isClickOutside 
+}
 
+const SideNavigation  = ({ isVisible, close }) => {
+  console.info('rendering')
+  const menuRef = useRef(null)
+  let isSideNavigationVisible
+  useEffect(() => {
+    isSideNavigationVisible = useClickOutsideHandler(menuRef)
+  },[])
+
+  return (
+    <div ref={menuRef}>
+      {isSideNavigationVisible && (
+        <StyledDiv isVisible={isVisible}>
+        <img src={closeIcon} onClick={close}/>
+        <nav>
+        <NavMainList />
+        </nav>
+      </StyledDiv>
+      )}
+    </div>
+  )
 }
 
 export default SideNavigation

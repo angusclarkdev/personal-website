@@ -5,9 +5,9 @@
  * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-import React, { useState } from "react"
+import React, { useState, useRef, useEffect } from "react"
 import PropTypes from "prop-types"
-import styled from 'styled-components'
+import styled, { ThemeProvider } from 'styled-components'
 import { useStaticQuery, graphql } from "gatsby"
 import "typeface-montserrat"
 import "typeface-karla"
@@ -28,46 +28,45 @@ const OverLay = styled.div`
 `
 const Layout = ({ children, headerTitle }) => {
   const [ isSideNavigationVisible, toggleSideNavigationVisibility ] = useState(false)
-  
-  // const data = useStaticQuery(graphql`
-  //   query SiteTitleQuery {
-  //     site {
-  //       siteMetadata {
-  //         title
-  //       }
-  //     }
-  //   }
-  // `)
+
+  const theme = {
+    colors: {
+      primaryHoverGreen: '#7CE0C4'
+    }
+  }
 
   return (
     <>
-    {isSideNavigationVisible && <OverLay />}
-      <SideNavigation
-        isVisible={isSideNavigationVisible}
-        close={() => toggleSideNavigationVisibility(false)} />
-        <div
-          style={{
-            margin: `0 auto`,
-            maxWidth: 1170,
-            padding: `0px 1.0875rem 1.45rem`,
-            paddingTop: 0,
-            display: 'flex',
-            minHeight: '100vh',
-            flexDirection: 'column',
-            position: 'relative'
-          }}
-        >
-          <Header title={headerTitle} showSideNavigation={() => toggleSideNavigationVisibility(true)} />
-          <main style={{
-            flexGrow: 1
-          }}>{children}</main>
-          <footer>
-            © {new Date().getFullYear()}, Built with
-            {` `}
-            <a href="https://www.gatsbyjs.org">Gatsby</a>
-          </footer>
-        </div>
-      </>
+      <ThemeProvider theme={theme}> 
+        {isSideNavigationVisible &&<OverLay />}
+            <SideNavigation
+              isVisible={isSideNavigationVisible}
+              close={() => toggleSideNavigationVisibility()}
+            />
+            <div
+              style={{
+                margin: `0 auto`,
+                maxWidth: 1170,
+                padding: `0px 1.0875rem 1.45rem`,
+                paddingTop: 0,
+                display: 'flex',
+                minHeight: '100vh',
+                flexDirection: 'column',
+                position: 'relative'
+              }}
+            >
+              <Header title={headerTitle} showSideNavigation={() => toggleSideNavigationVisibility(true)} />
+              <main style={{
+                flexGrow: 1
+              }}>{children}</main>
+              <footer>
+                © {new Date().getFullYear()}, Built with
+                {` `}
+                <a href="https://www.gatsbyjs.org">Gatsby</a>
+              </footer>
+            </div>
+      </ThemeProvider>
+    </>
   )
 }
 

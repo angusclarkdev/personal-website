@@ -1,6 +1,6 @@
 import React from "react"
 import { Link } from "gatsby"
-import styled, { createGlobalStyle } from 'styled-components'
+import styled, { createGlobalStyle, ThemeProvider } from 'styled-components'
 
 import BlogTitle from '../components/blogTitle'
 import Posts from '../components/posts'
@@ -18,17 +18,17 @@ const GlobalStyles = createGlobalStyle`
 `
 const MainContent = styled.section`
   display: flex;
-  /* justify-content: space-between; */
 `
+
 const IndexPage = () => (
   <Layout headerTitle='Angus Clark'>
-    <GlobalStyles />
-    <SEO title="Home" />
-    <BlogTitle />
-    <MainContent>
-      <Posts />
-      <SideBar />
-    </MainContent>
+      <GlobalStyles />
+      <SEO title="Home" />
+      <BlogTitle />
+      <MainContent>
+        <Posts />
+        <SideBar />
+      </MainContent>
   </Layout>
 )
 

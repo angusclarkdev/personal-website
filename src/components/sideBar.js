@@ -28,7 +28,7 @@ const StyledSection = styled.section`
   flex-basis: 30%;
   padding: 1em;
 
-  div {
+  > div {
     padding: 0 2em;
   }
 `

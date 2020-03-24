@@ -8,9 +8,6 @@ const NavMainList = () => {
         <a href='/about'> About me </a>
       </li>
       <li>
-        <a href='/blogs'> Blog posts </a>
-      </li>
-      <li>
         <a href='/contact'> Contact me </a>
       </li>
       <li>

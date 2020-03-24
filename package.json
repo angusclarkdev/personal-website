@@ -21,7 +21,7 @@
     "react-helmet": "^5.2.1",
     "styled-components": "^4.4.1",
     "typeface-montserrat": "^0.0.75",
-    "typeface-karla": "^0.0.75"
+    "typeface-karla": "^0.0.72"
   },
   "devDependencies": {
     "prettier": "^1.19.1"
