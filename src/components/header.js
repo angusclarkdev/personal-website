@@ -16,6 +16,17 @@ const StyledDiv = styled.div`
 const StyledH1 = styled.h1`
   text-decoration: none;
   text-transform: italic;
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+`
+const MenuButton = styled.button`
+  
+  background: transparent;
+    border: none !important;
+    font-size:0;
 `
 
 const StyledImg = styled.img`
@@ -31,9 +42,11 @@ const Header = ({ title, showSideNavigation }) => (
   >
     <StyledDiv>
       <StyledH1>
-          {title}
+          <a href='https://localhost:8000'>{title}</a>
       </StyledH1>
-      <StyledImg src={menu} onClick={showSideNavigation} />
+      <MenuButton onClick={showSideNavigation}>
+        <StyledImg src={menu} />
+        </MenuButton>
     </StyledDiv>
   </header>
 )
