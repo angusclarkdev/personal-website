@@ -1,9 +1,16 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import styled from 'styled-components'
 
 const NavMainList = () => {
+  const menuRef = useRef(null)
+  console.info(menuRef)
+  useEffect(() => {
+    menuRef.current.focus()
+    console.info('focused?')
+    console.info(document.activeElement)  
+  })
   return (
-    <ul>
+    <ul ref={menuRef}> 
       <li>
         <a href='/about'> About me </a>
       </li>

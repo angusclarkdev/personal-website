@@ -38,12 +38,17 @@ const Layout = ({ children, headerTitle }) => {
   return (
     <>
       <ThemeProvider theme={theme}> 
-        {isSideNavigationVisible &&<OverLay />}
+        {isSideNavigationVisible && (
+          <>
+            <OverLay />
             <SideNavigation
               handleBlur={() => toggleSideNavigationVisibility()}
               isVisible={isSideNavigationVisible}
               close={() => toggleSideNavigationVisibility()}
             />
+          </>
+          )
+        }
             <div
               style={{
                 margin: `0 auto`,
