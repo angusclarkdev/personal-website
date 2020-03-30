@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import styled from 'styled-components'
 
 import closeIcon from '../images/close.svg'
@@ -50,8 +50,30 @@ const CloseButton = styled.button`
 `
 
 const SideNavigation  = ({ isVisible, close }) => {
+  const menuRef = useRef(null)
+  useEffect(() => {
+    menuRef.current.focus()
+  })
+
+  useEffect(() => {
+    const keyListener = (e) => {
+      const listener = keyListenerMap.get(e.keyCode)
+      listener && listener()
+    }
+    document.addEventListener('keydown', keyListener)
+
+    return () => document.removeEventListener('keydown', keyListener)
+  })
+
+  const handleEscapeKey = () => {
+    close()
+  }
+
+  const mapValues = [[27, handleEscapeKey]]
+  const keyListenerMap = new Map(mapValues)
+
   return (
-    <StyledDiv isVisible={isVisible}>
+    <StyledDiv tabIndex='0' ref={menuRef} isVisible={isVisible}>
      <CloseButton>
      	  <img src={closeIcon} onClick={close}/>
      </CloseButton>

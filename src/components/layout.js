@@ -47,8 +47,7 @@ const Layout = ({ children, headerTitle }) => {
               close={() => toggleSideNavigationVisibility()}
             />
           </>
-          )
-        }
+          )}
             <div
               style={{
                 margin: `0 auto`,
