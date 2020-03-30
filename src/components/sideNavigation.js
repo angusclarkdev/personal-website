@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 import closeIcon from '../images/close.svg'
 import NavMainList from './navMainList'
+import { InvisibleButton } from './header'
 
 const StyledDiv = styled.div`
   background-color: #F5F5F5;
@@ -36,19 +37,24 @@ const StyledDiv = styled.div`
   nav {
     position: relative;
   }
+`
 
-  img {
-    position: absolute;
-    right: 0;
-    margin-right: 1rem;
-    cursor: pointer;
-  }
+const CloseButton = styled.button`
+  background: transparent;
+  border: none !important;
+  font-size:0;
+  position: absolute;
+  right: 0;
+  margin-right: 1rem;
+  cursor: pointer;
 `
 
 const SideNavigation  = ({ isVisible, close }) => {
   return (
     <StyledDiv isVisible={isVisible}>
-     <img src={closeIcon} onClick={close}/>
+     <CloseButton>
+     	  <img src={closeIcon} onClick={close}/>
+     </CloseButton>
       <nav>
       <NavMainList />
       </nav>

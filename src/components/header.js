@@ -22,11 +22,10 @@ const StyledH1 = styled.h1`
     color: inherit;
   }
 `
-const MenuButton = styled.button`
-  
+const InvisibleButton = styled.button`
   background: transparent;
-    border: none !important;
-    font-size:0;
+  border: none !important;
+  font-size:0;
 `
 
 const StyledImg = styled.img`
@@ -44,9 +43,9 @@ const Header = ({ title, showSideNavigation }) => (
       <StyledH1>
           <a href='https://localhost:8000'>{title}</a>
       </StyledH1>
-      <MenuButton onClick={showSideNavigation}>
+      <InvisibleButton onClick={showSideNavigation}>
         <StyledImg src={menu} />
-        </MenuButton>
+        </InvisibleButton>
     </StyledDiv>
   </header>
 )
@@ -58,5 +57,4 @@ Header.propTypes = {
 Header.defaultProps = {
   title: ``,
 }
-
 export default Header
