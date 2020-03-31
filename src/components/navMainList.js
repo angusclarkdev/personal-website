@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 const NavMainList = () => {
   return (
-    <nav>
+    <nav aria-label='Main Menu'>
       <ul> 
         <li>
           <a href='/about'> About me </a>

@@ -9,6 +9,7 @@ import React, { useState, useRef, useEffect } from "react"
 import PropTypes from "prop-types"
 import styled, { ThemeProvider } from 'styled-components'
 import { useStaticQuery, graphql } from "gatsby"
+import { CSSTransitionGroup } from 'react-transition-group'
 import "typeface-montserrat"
 import "typeface-karla"
 
@@ -41,11 +42,11 @@ const Layout = ({ children, headerTitle }) => {
         {isSideNavigationVisible && (
           <>
             <OverLay />
-            <SideNavigation
-              handleBlur={() => toggleSideNavigationVisibility()}
-              isVisible={isSideNavigationVisible}
-              close={() => toggleSideNavigationVisibility()}
-            />
+              <SideNavigation
+                handleBlur={() => toggleSideNavigationVisibility()}
+                isVisible={isSideNavigationVisible}
+                close={() => toggleSideNavigationVisibility()}
+              />
           </>
           )}
             <div
