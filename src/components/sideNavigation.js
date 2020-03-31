@@ -11,10 +11,10 @@ const StyledDiv = styled.div`
   height: 100%;
   position: fixed;
   right: 0;
-  /* transform: ${props => props.isVisible ? 0 : 'translateX(311px)'};  */
+  transform: ${props => props.isVisible ? 0 : 'translateX(311px)'}; 
   padding: 1.45rem 6rem;
   z-index: 2;
-  /* transition: transform .4s ease-in-out; */
+  transition: transform .4s ease-in-out;
 
   ul {
     margin: 0;
@@ -58,6 +58,7 @@ const CloseButton = styled.button`
 const SideNavigation  = ({ isVisible, close }) => {
   const menuRef = useRef(null)
   useEffect(() => {
+    console.info(menuRef.current)
     menuRef.current.focus()
   },[])
 
@@ -99,18 +100,12 @@ const SideNavigation  = ({ isVisible, close }) => {
   const keyListenerMap = new Map(mapValues)
 
   return (
-    <CSSTransitionGroup
-      transitionName="transform"
-      transitionEnterTimeout={500}
-      transitionLeaveTimeout={300}
-    >
       <StyledDiv tabIndex='-1' ref={menuRef} isVisible={isVisible} onBlur={handleBlur}>
         <CloseButton tabIndex='0' onClick={close}>
           <img src={closeIcon} />
         </CloseButton>
         <NavMainList />
       </StyledDiv>
-    </CSSTransitionGroup>
   )
 }
 
