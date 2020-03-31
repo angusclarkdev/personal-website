@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
 
 import closeIcon from '../images/close.svg'
@@ -50,36 +50,60 @@ const CloseButton = styled.button`
 `
 
 const SideNavigation  = ({ isVisible, close }) => {
+  const [ shiftPressed, setShiftPressed ] = useState(false)
   const menuRef = useRef(null)
   useEffect(() => {
     menuRef.current.focus()
+    console.info('focused')
   })
 
   useEffect(() => {
     const keyListener = (e) => {
       const listener = keyListenerMap.get(e.keyCode)
-      listener && listener()
+      listener && listener(e)
     }
     document.addEventListener('keydown', keyListener)
 
     return () => document.removeEventListener('keydown', keyListener)
   })
 
-  const handleEscapeKey = () => {
+  const handleCloseMenu = () => {
     close()
   }
 
-  const mapValues = [[27, handleEscapeKey]]
+  const handleBlur = (e) => {
+    if (!e.currentTarget.contains(e.relatedTarget)) {
+      close()
+    }
+  }
+  const handleShiftPressed = () => {
+    setShiftPressed(true)
+  }
+  const handleTabKey = (e) => {
+    const nodeArray = Array.from(menuRef.current.childNodes)
+    const focusableElements = menuRef.current.querySelectorAll('button, [href]')
+    const firstFocusable = focusableElements[0]
+    const lastFocusable = focusableElements[focusableElements.length - 1]
+    console.info('first', firstFocusable)
+    console.info('last', lastFocusable)
+    if (shiftPressed && e.target === firstFocusable) {
+      lastFocusable.focus()
+    }
+    if (e.target === lastFocusable) {
+      e.preventDefault()
+      firstFocusable.focus()
+      } 
+    }
+
+  const mapValues = [[27, handleCloseMenu], [9, handleTabKey], [16, handleShiftPressed]]
   const keyListenerMap = new Map(mapValues)
 
   return (
-    <StyledDiv tabIndex='0' ref={menuRef} isVisible={isVisible}>
+    <StyledDiv tabIndex='0' ref={menuRef} isVisible={isVisible} onBlur={handleBlur}>
      <CloseButton>
      	  <img src={closeIcon} onClick={close}/>
      </CloseButton>
-      <nav>
       <NavMainList />
-      </nav>
   </StyledDiv>
   )
 }
