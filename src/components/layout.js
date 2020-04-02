@@ -9,7 +9,7 @@ import React, { useState, useRef, useEffect } from "react"
 import PropTypes from "prop-types"
 import styled, { ThemeProvider } from 'styled-components'
 import { useStaticQuery, graphql } from "gatsby"
-import { CSSTransitionGroup } from 'react-transition-group'
+import { CSSTransition } from 'react-transition-group';
 import "typeface-montserrat"
 import "typeface-karla"
 
@@ -35,20 +35,26 @@ const Layout = ({ children, headerTitle }) => {
       primaryHoverGreen: '#7CE0C4'
     }
   }
-
+  console.info('isSideNavigationVisible', isSideNavigationVisible)
   return (
     <>
       <ThemeProvider theme={theme}> 
-        {isSideNavigationVisible && (
+        {isSideNavigationVisible && <OverLay />}
           <>
-            <OverLay />
+            <CSSTransition
+              in={isSideNavigationVisible}
+              timeout={400}
+              classNames="transform"
+              onEnter={() => console.info('FIRED')}
+            >
               <SideNavigation
                 handleBlur={() => toggleSideNavigationVisibility()}
                 isVisible={isSideNavigationVisible}
                 close={() => toggleSideNavigationVisibility()}
               />
+            </CSSTransition>
           </>
-          )}
+        )}
             <div
               style={{
                 margin: `0 auto`,

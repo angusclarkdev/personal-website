@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
-import { CSSTransitionGroup } from 'react-transition-group'
+import { CSSTransition } from 'react-transition-group';
 
 import closeIcon from '../images/close.svg'
 import NavMainList from './navMainList'
@@ -10,11 +10,35 @@ const StyledDiv = styled.div`
   background-color: #F5F5F5;
   height: 100%;
   position: fixed;
-  right: 0;
-  transform: ${props => props.isVisible ? 0 : 'translateX(311px)'}; 
+  right: 0px;
+  transform: translateX(100%);
   padding: 1.45rem 6rem;
   z-index: 2;
-  transition: transform .4s ease-in-out;
+
+  &.transform-enter {
+    right: 0px;
+    transform: translateX(100%);
+    /* transform: translateX(0%); */
+
+  }
+
+  &.transform-enter-active {
+    transform: translateX(0%);
+    transition: transform .4s ease-in-out;
+  }
+
+  &.transform-enter-done {
+    transform: translateX(0%);
+  }
+
+  &.transform-exit {
+    transform: translateX(0%);
+  }
+
+  &.transform-exit-active {
+    transform: translateX(100%);
+    transition: transform .4s ease-in-out;
+  }
 
   ul {
     margin: 0;
@@ -34,10 +58,6 @@ const StyledDiv = styled.div`
       color: ${props => props.theme.colors.primaryHoverGreen}
     }
 
-    &.transform-appear {
-      transform: translateX(311px);
-      transition: transform .4s ease-in-out
-    }
   }
 
   nav {
@@ -58,9 +78,11 @@ const CloseButton = styled.button`
 const SideNavigation  = ({ isVisible, close }) => {
   const menuRef = useRef(null)
   useEffect(() => {
-    console.info(menuRef.current)
-    menuRef.current.focus()
-  },[])
+    if (isVisible) {
+      console.info()
+      menuRef.current.focus()
+    }
+  })
 
   useEffect(() => {
     const keyListener = (e) => {
@@ -77,12 +99,17 @@ const SideNavigation  = ({ isVisible, close }) => {
   }
 
   const handleBlur = (e) => {
-    // if (!e.currentTarget.contains(e.relatedTarget)) {
-    //   close()
-    // }
+    if (!e.currentTarget.contains(e.relatedTarget)) {
+      console.info('blurred')
+      close()
+      menuRef.current.blur()
+    }
   }
   
   const handleTabKey = (e) => {
+    if (!isVisible) {
+      return
+    }
     const focusableElements = menuRef.current.querySelectorAll('button, [href]')
     const firstFocusable = focusableElements[0]
     const lastFocusable = focusableElements[focusableElements.length - 1]
@@ -98,8 +125,8 @@ const SideNavigation  = ({ isVisible, close }) => {
 
   const mapValues = [[27, handleCloseMenu], [9, handleTabKey]]
   const keyListenerMap = new Map(mapValues)
-
   return (
+    
       <StyledDiv tabIndex='-1' ref={menuRef} isVisible={isVisible} onBlur={handleBlur}>
         <CloseButton tabIndex='0' onClick={close}>
           <img src={closeIcon} />
