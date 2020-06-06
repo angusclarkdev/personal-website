@@ -5,23 +5,17 @@ import styled from 'styled-components'
 
 import menu from '../images/menu.svg'
 
-const StyledDiv = styled.div`
-  margin: 0 auto;
-  max-width: 1170px;
-  padding: 1.45rem 0;
-  display: flex;
-  justify-content: space-between;
-`
 
 const StyledH1 = styled.h1`
   text-decoration: none;
   text-transform: italic;
+  margin: 0;
 
   a {
-    text-decoration: none;
-    color: inherit;
+     color: var(--header);
   }
 `
+
 const InvisibleButton = styled.button`
   background: transparent;
   border: none !important;
@@ -36,17 +30,15 @@ const StyledImg = styled.img`
 const Header = ({ title, showSideNavigation }) => (
   <header
     style={{
-      marginBottom: `1.45rem`,
+      // marginBottom: `1.45rem`,
     }}
   >
-    <StyledDiv>
       <StyledH1>
           <a href='https://localhost:8000'>{title}</a>
       </StyledH1>
-      <InvisibleButton onClick={showSideNavigation}>
+      {/* <InvisibleButton onClick={showSideNavigation}>
         <StyledImg src={menu} />
-        </InvisibleButton>
-    </StyledDiv>
+        </InvisibleButton> */}
   </header>
 )
 

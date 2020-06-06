@@ -49,17 +49,6 @@ const StyledDiv = styled.div`
     margin-bottom: 0;
   }
 
-  a {
-    text-decoration: none;
-    color: inherit;
-    cursor: pointer;
-    
-    &:hover {
-      color: ${props => props.theme.colors.primaryHoverGreen}
-    }
-
-  }
-
   nav {
     position: relative;
   }

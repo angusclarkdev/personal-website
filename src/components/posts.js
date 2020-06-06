@@ -3,15 +3,17 @@ import styled from 'styled-components'
 import BlogPost from './blogPost'
 
 const StyledSection = styled.section`
-flex-basis: 75%;
-margin-right: 1em;
+  margin-top: 2rem;
+  margin-right: 1em;
 `
 
 const Posts = () => (
   <StyledSection>
-    <BlogPost category='general' />
     <BlogPost category='tech' />
-    <BlogPost category='mental health' />
+    <BlogPost category='tech' />
+    <BlogPost category='tech' />
+    {/* <BlogPost category='tech' /> */}
+    {/* <BlogPost category='mental health' /> */}
   </StyledSection>
 )
 

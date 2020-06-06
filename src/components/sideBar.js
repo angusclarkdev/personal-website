@@ -50,11 +50,6 @@ const SideBar = () => (
     </StyledUl>
     </div>
     <div>
-        {/* {latest.map(i => (
-          <li>
-          <
-        </li>
-        ))} */}
     </div>
   </StyledSection>
 )

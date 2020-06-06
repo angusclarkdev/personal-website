@@ -1,8 +1,8 @@
 import React from "react"
 import { Link } from "gatsby"
 import styled, { createGlobalStyle, ThemeProvider } from 'styled-components'
-
-import BlogTitle from '../components/blogTitle'
+import { normalize } from 'styled-normalize'
+import Intro from '../components/Intro'
 import Posts from '../components/posts'
 import Image from "../components/image"
 import Layout from "../components/layout"
@@ -12,8 +12,18 @@ import SEO from "../components/seo"
 
 
 const GlobalStyles = createGlobalStyle`
+  ${normalize}
+
+  :root {
+    --bg: #ffffff;
+    --bg-secondary: #121212;
+    --header: #232323;
+    --title: #0D58A6;
+    --paragraph: var(--bg);
+  }
+
   body {
-    background-color: #F5F5F5;
+    background-color: var(--bg);
   }
 `
 const MainContent = styled.section`
@@ -24,10 +34,10 @@ const IndexPage = () => (
   <Layout headerTitle='Angus Clark'>
       <GlobalStyles />
       <SEO title="Home" />
-      <BlogTitle />
+      <Intro />
       <MainContent>
         <Posts />
-        <SideBar />
+        {/* <SideBar /> */}
       </MainContent>
   </Layout>
 )

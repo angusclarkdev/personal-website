@@ -1,10 +1,3 @@
-/**
- * Layout component that queries for data
- * with Gatsby's useStaticQuery component
- *
- * See: https://www.gatsbyjs.org/docs/use-static-query/
- */
-
 import React, { useState, useRef, useEffect } from "react"
 import PropTypes from "prop-types"
 import styled, { ThemeProvider } from 'styled-components'
@@ -14,7 +7,6 @@ import "typeface-montserrat"
 import "typeface-karla"
 
 import Header from "./header"
-import "./layout.css"
 import SideNavigation from "./sideNavigation"
 
 const OverLay = styled.div`
@@ -25,8 +17,16 @@ const OverLay = styled.div`
   width: 100%;
   z-index: 1;
   background-color: rgba(0,0,0,0.7);
-
 `
+
+const HeaderWrapper = styled.div`
+  margin: 0 auto;
+  margin-bottom: 1rem;
+  max-width: 1170px;
+  display: flex;
+  justify-content: space-between;
+`
+
 const Layout = ({ children, headerTitle }) => {
   const [ isSideNavigationVisible, toggleSideNavigationVisibility ] = useState(false)
 
@@ -35,39 +35,38 @@ const Layout = ({ children, headerTitle }) => {
       primaryHoverGreen: '#7CE0C4'
     }
   }
-  console.info('isSideNavigationVisible', isSideNavigationVisible)
   return (
     <>
       <ThemeProvider theme={theme}> 
         {isSideNavigationVisible && <OverLay />}
           <>
-            <CSSTransition
+            {/* <CSSTransition
               in={isSideNavigationVisible}
               timeout={400}
               classNames="transform"
               onEnter={() => console.info('FIRED')}
-            >
-              <SideNavigation
-                handleBlur={() => toggleSideNavigationVisibility()}
+            > */}
+              {/* <SideNavigation
+                handleBlur={() => toggleSideNavigationVisibility(false)}
                 isVisible={isSideNavigationVisible}
-                close={() => toggleSideNavigationVisibility()}
-              />
-            </CSSTransition>
+                close={() => toggleSideNavigationVisibility(false)}
+              /> */}
+            {/* </CSSTransition> */}
           </>
-        )}
             <div
               style={{
                 margin: `0 auto`,
                 maxWidth: 1170,
-                padding: `0px 1.0875rem 1.45rem`,
-                paddingTop: 0,
+                padding: `3rem 1.5rem 1rem`,
                 display: 'flex',
                 minHeight: '100vh',
                 flexDirection: 'column',
-                position: 'relative'
+                position: 'relative',
               }}
             >
-              <Header title={headerTitle} showSideNavigation={() => toggleSideNavigationVisibility(true)} />
+              <HeaderWrapper>
+                <Header title={headerTitle} showSideNavigation={() => toggleSideNavigationVisibility(true)} />
+              </HeaderWrapper>
               <main style={{
                 flexGrow: 1
               }}>{children}</main>
