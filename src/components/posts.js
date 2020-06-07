@@ -7,13 +7,11 @@ const StyledSection = styled.section`
   margin-right: 1em;
 `
 
-const Posts = () => (
+const Posts = ({ posts }) => (
   <StyledSection>
-    <BlogPost category='tech' />
-    <BlogPost category='tech' />
-    <BlogPost category='tech' />
-    {/* <BlogPost category='tech' /> */}
-    {/* <BlogPost category='mental health' /> */}
+    {posts.map(i => (
+      <BlogPost key={i.id} title={i.title} content={i.content} />
+    ))}
   </StyledSection>
 )
 

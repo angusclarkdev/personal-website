@@ -20,7 +20,6 @@ const OverLay = styled.div`
 `
 
 const HeaderWrapper = styled.div`
-  margin: 0 auto;
   margin-bottom: 1rem;
   max-width: 1170px;
   display: flex;

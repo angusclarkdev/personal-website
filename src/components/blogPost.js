@@ -17,10 +17,10 @@ const StyledDiv = styled.div`
  * 
  * 
 */
-const BlogPost = () => (
+const BlogPost = ({ title, content }) => (
   <StyledDiv>
-    <h3> Easier forms in react applications with react-hook-form </h3>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur nobis similique magnam </p>
+    <h3> {title} </h3>
+    <p>{content} </p>
   </StyledDiv>
 )
 
