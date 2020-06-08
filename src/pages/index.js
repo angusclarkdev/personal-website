@@ -48,27 +48,29 @@ const blogPosts = [
 ]
 
 const IndexPage = () => {
-    // can I use a different default?
   const [ filters, setFilters ] = useState([])
   const [ filteredPosts, filterPostsByCategory ] = useState(blogPosts)
 
-  useEffect(() => {        
-    const posts = (blogPosts.filter(i => filters.includes(i.category)))
-    
-    if (filters.length == 0) {
+  useEffect(() => {            
+    if (!filters.length) {
       filterPostsByCategory(blogPosts)  
     } else {
+      const posts = (blogPosts.filter(i => filters.includes(i.category)))
       filterPostsByCategory(posts)
     } 
   },[filters])
 
   const handleClick = (value) => {
-    // look at refactor
-    let newFilters = [...filters, value]
-    if (filters.includes(value)) {
-      newFilters = newFilters.filter(i => i !== value)
-    }    
-    setFilters(newFilters)
+    let updatedFilterArr
+    if (!filters.length) {
+        updatedFilterArr = [value]
+    } else {
+      updatedFilterArr = [...filters, value]
+      if (filters.includes(value)) {
+        updatedFilterArr = updatedFilterArr.filter(i => i !== value)
+      }    
+    }
+    setFilters(updatedFilterArr)
   }
   return (
     <Layout headerTitle='Angus Clark'>
